@@ -105,6 +105,11 @@ module Jammit
     self
   end
 
+  def self.set_conf_dir(dir)
+    remove_const 'DEFAULT_CONFIG_PATH'
+    const_set 'DEFAULT_CONFIG_PATH', File.join(ASSET_ROOT, dir, 'assets.yml')
+  end
+
   # Force a reload by resetting the Packager and reloading the configuration.
   # In development, this will be called as a before_filter before every request.
   def self.reload!

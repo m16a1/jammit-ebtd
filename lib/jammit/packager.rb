@@ -103,8 +103,8 @@ module Jammit
     # Print a warning if no files were found that match the glob.
     def glob_files(glob)
       absolute = Pathname.new(glob).absolute?
-      paths = Dir[absolute ? glob : File.join(ASSET_ROOT, glob)].sort
-      Jammit.warn("No assets match '#{glob}'") if paths.empty?
+      paths = Dir[absolute ? glob : File.join(ASSET_ROOT, glob)]
+      #Jammit.warn("No assets match '#{glob}'") if paths.empty?
       paths
     end
 
@@ -157,7 +157,7 @@ module Jammit
       config.each do |name, globs|
         globs                  ||= []
         packages[name]         = {}
-        paths                  = globs.flatten.uniq.map {|glob| glob_files(glob) }.flatten.uniq
+        paths = get_file_list(globs.flatten.uniq)
         packages[name][:paths] = paths
         if !paths.grep(Jammit.template_extension_matcher).empty?
           packages[name][:urls] = paths.grep(JS_EXTENSION).map {|path| path.sub(path_to_url, '') }
@@ -165,6 +165,7 @@ module Jammit
         else
           packages[name][:urls] = paths.map {|path| path.sub(path_to_url, '') }
         end
+        puts name
       end
       packages
     end
@@ -174,6 +175,27 @@ module Jammit
       raise PackageNotFound, "assets.yml does not contain a \"#{package}\" #{extension.to_s.upcase} package"
     end
 
-  end
+    private
+    def get_file_list(globs)
+      paths = []
+      globs.each do |glob|
+        if String === glob
+          paths.concat glob_files(glob)
+        elsif Hash === glob
+          paths = exclude_paths(paths, glob['exclude']) if glob['exclude']
+          #puts exclude_paths(paths, glob['exclude']).to_s
+        end
+      end
+      paths
+    end
 
+    def exclude_paths(paths, globs)
+      globs.each do |glob|
+        excluded_files = glob_files(glob)
+        paths.reject! { |path| excluded_files.include?(path) }
+      end
+      paths
+    end
+
+  end
 end

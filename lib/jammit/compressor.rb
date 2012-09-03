@@ -153,11 +153,6 @@ module Jammit
     def concatenate_and_tag_assets(paths, variant=nil)
       stylesheets = [paths].flatten.map do |css_path|
         contents = read_binary_file(css_path)
-        contents.gsub(EMBED_DETECTOR) do |url|
-          ipath, cpath = Pathname.new($1), Pathname.new(File.expand_path(css_path))
-          is_url = URI.parse($1).absolute?
-          is_url ? url : "url(#{construct_asset_path(ipath, cpath, variant)})"
-        end
       end
       stylesheets.join("\n")
     end
