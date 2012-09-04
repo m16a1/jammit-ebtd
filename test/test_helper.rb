@@ -8,7 +8,7 @@ devnull = RUBY_PLATFORM =~ /mswin|mingw|bccwin|wince|emx/ ? 'nul' : '/dev/null'
 ENV['RAILS_ENV'] ||= "test"
 ENV["RAILS_ASSET_ID"] = "101"
 
-require './lib/jammit'
+require './lib/jammit-ebtd'
 Jammit.load_configuration(Jammit::DEFAULT_CONFIG_PATH)
 
 def glob(g)

@@ -21,13 +21,13 @@ namespace :gem do
 
   desc 'Build and install the jammit gem'
   task :install do
-    sh "gem build jammit.gemspec"
+    sh "gem build jammit-ebtd.gemspec"
     sh "sudo gem install #{Dir['*.gem'].join(' ')} --local --no-ri --no-rdoc"
   end
 
-  desc 'Uninstall the jammit gem'
+  desc 'Uninstall the jammit-ebtd gem'
   task :uninstall do
-    sh "sudo gem uninstall -x jammit"
+    sh "sudo gem uninstall -x jammit-ebtd"
   end
 
 end

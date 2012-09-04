@@ -108,7 +108,7 @@ module Jammit
       paths
     end
 
-    # In Rails, the difference between a path and an asset URL is "public".    
+    # In Rails, the difference between a path and an asset URL is "public".
     def path_to_url
       @path_to_url ||= /\A#{Regexp.escape(ASSET_ROOT)}(\/?#{Regexp.escape(Jammit.public_root.sub(ASSET_ROOT, ''))})?/
     end
@@ -157,7 +157,7 @@ module Jammit
       config.each do |name, globs|
         globs                  ||= []
         packages[name]         = {}
-        paths = get_file_list(globs.flatten.uniq)
+        paths = get_file_list(globs.flatten.uniq).uniq.sort
         packages[name][:paths] = paths
         if !paths.grep(Jammit.template_extension_matcher).empty?
           packages[name][:urls] = paths.grep(JS_EXTENSION).map {|path| path.sub(path_to_url, '') }

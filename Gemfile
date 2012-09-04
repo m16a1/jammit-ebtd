@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
-gemspec
+#gemspec
 
 group :development, :test do
   gem "rake", "0.9.2.2"
-  gem "rails", "2.3.14"
   gem "cssmin", "1.0.2"
   gem "jsmin", "1.0.1"
   gem "yui-compressor", "0.9.6"

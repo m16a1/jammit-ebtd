@@ -188,7 +188,6 @@ module Jammit
       public_path = absolute_path(asset_path, css_path)
       return "__EMBED__#{public_path}" if embeddable?(public_path, variant)
       source = asset_path.absolute? || ! Jammit.rewrite_relative_paths ? asset_path.to_s : relative_path(public_path)
-      rewrite_asset_path(source, public_path)
     end
 
     # Get the site-absolute public path for an asset file path that may or may
@@ -203,13 +202,6 @@ module Jammit
     # embedded, must be rewritten relative to the newly-merged stylesheet path.
     def relative_path(absolute_path)
       File.join('../', absolute_path.sub(Jammit.public_root, ''))
-    end
-
-    # Similar to the AssetTagHelper's method of the same name, this will
-    # append the RAILS_ASSET_ID cache-buster to URLs, if it's defined.
-    def rewrite_asset_path(path, file_path)
-      asset_id = rails_asset_id(file_path)
-      (!asset_id || asset_id == '') ? path : "#{path}?#{asset_id}"
     end
 
     # Similar to the AssetTagHelper's method of the same name, this will
