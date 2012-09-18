@@ -22,11 +22,11 @@ module Jammit
 
   DEFAULT_JST_NAMESPACE         = "window.JST"
 
-  JAVASCRIPT_COMPRESSORS        = [:jsmin, :yui, :closure, :uglifier]
+  JAVASCRIPT_COMPRESSORS        = [:jsmin, :yui, :closure, :uglifier, :none]
 
   DEFAULT_JAVASCRIPT_COMPRESSOR = :jsmin
 
-  CSS_COMPRESSORS               = [:cssmin, :yui, :sass]
+  CSS_COMPRESSORS               = [:cssmin, :yui, :sass, :none]
 
   DEFAULT_CSS_COMPRESSOR        = :cssmin
 

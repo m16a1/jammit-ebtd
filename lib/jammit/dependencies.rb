@@ -46,6 +46,7 @@ require 'jsmin'
 require 'cssmin'
 require 'jammit/jsmin_compressor'
 require 'jammit/cssmin_compressor'
+require 'jammit/none_compressor'
 require 'jammit/compressor'
 require 'jammit/packager'
 
