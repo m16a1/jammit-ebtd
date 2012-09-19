@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name      = 'jammit-ebtd'
-  s.date      = '2012-09-04'
-  s.version   = '0.6.6'
+  s.date      = '2012-09-18'
+  s.version   = '0.6.7'
 
   s.homepage    = "https://github.com/m16a1/jammit-ebtd"
   s.summary     = "Industrial Strength Asset Packaging for Rails"
