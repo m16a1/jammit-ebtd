@@ -105,7 +105,7 @@ module Jammit
       absolute = Pathname.new(glob).absolute?
       paths = Dir[absolute ? glob : File.join(ASSET_ROOT, glob)]
       #Jammit.warn("No assets match '#{glob}'") if paths.empty?
-      paths
+      paths.sort
     end
 
     # In Rails, the difference between a path and an asset URL is "public".
@@ -180,7 +180,7 @@ module Jammit
       paths = []
       globs.each do |glob|
         if String === glob
-          paths.concat glob_files(glob)
+          paths += glob_files(glob)
         elsif Hash === glob
           paths = exclude_paths(paths, glob['exclude']) if glob['exclude']
           #puts exclude_paths(paths, glob['exclude']).to_s
