@@ -157,7 +157,7 @@ module Jammit
       config.each do |name, globs|
         globs                  ||= []
         packages[name]         = {}
-        paths = get_file_list(globs.flatten.uniq).uniq.sort
+        paths = get_file_list(globs.flatten.uniq).uniq
         packages[name][:paths] = paths
         if !paths.grep(Jammit.template_extension_matcher).empty?
           packages[name][:urls] = paths.grep(JS_EXTENSION).map {|path| path.sub(path_to_url, '') }
