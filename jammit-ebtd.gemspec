@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name      = 'jammit-ebtd'
-  s.date      = '2012-10-04'
-  s.version   = '0.6.9'
+  s.date      = '2012-11-09'
+  s.version   = '0.6.9.1'
 
   s.homepage    = "https://github.com/m16a1/jammit-ebtd"
   s.summary     = "Industrial Strength Asset Packaging for Rails"
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
                          '--main'     << 'README' <<
                          '--all'
 
-  s.add_dependency 'cssmin', ['>= 1.0.2']
+  s.add_dependency 'cssmin-ebtd'
   s.add_dependency 'jsmin',  ['>= 1.0.1']
 
   s.files = Dir['lib/**/*', 'bin/*', 'jammit-ebtd.gemspec', 'LICENSE', 'README']
